@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="256x256" href="img/favicon-256.png">
+
+<title>Register | Quantum AI</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
+<link rel="stylesheet" href="css/min.style.css?ver=0.1" media="all">
+</head>
+
+<body>
+
+<header class="main-header">
+<div class="nav-container">
+
+<div class="header-left">
+<a href="index.html" class="logo">
+<img src="img/quantum-new.svg" alt="QuantumAI">
+</a>
+</div>
+
+<nav class="nav-links">
+<a href="#">Products</a>
+<a href="#">About us</a>
+<a href="#">Team</a>
+<a href="#">Blog</a>
+<a href="#">Contact us</a>
+</nav>
+
+<div class="header-right">
+<div class="header-auth">
+<a href="#" class="btn-login">Log in</a>
+<a href="register.html" class="btn-signup">Sign up</a>
+</div>
+</div>
+
+</div>
+</header>
+
+<div class="bg-fixed"></div>
+
+<section class="h-start">
+<div class="wrap">
+<div class="content" style="max-width:500px;margin:auto;text-align:left">
+
+<h1>Create Your <span class="highlight">Account</span></h1>
+<p>Register to get started with automated AI crypto trading.</p>
+
+<form id="registerForm">
+
+<div style="margin-bottom:15px;">
+<label>Full Name</label>
+<input type="text" name="name" required style="width:100%;padding:10px;">
+</div>
+
+<div style="margin-bottom:15px;">
+<label>Phone Number</label>
+<input type="tel" name="phone" required style="width:100%;padding:10px;">
+</div>
+
+<div style="margin-bottom:15px;">
+<label>Country</label>
+<input type="text" name="country" required style="width:100%;padding:10px;">
+</div>
+
+<div style="margin-bottom:15px;">
+<label>Email Address</label>
+<input type="email" name="email" required style="width:100%;padding:10px;">
+</div>
+
+<button type="submit" class="btn" style="width:100%;">Register</button>
+
+<p id="formMessage" style="margin-top:10px;"></p>
+
+</form>
+
+</div>
+</div>
+</section>
+
+<footer class="main-footer">
+<div class="q-wrap">
+<p>&copy; 2026 QUANTUM AI. All rights reserved. <span class="footer-warning">Trading carries risks.</span></p>
+</div>
+</footer>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const data = {
+name: this.name.value,
+phone: this.phone.value,
+country: this.country.value,
+email: this.email.value
+};
+
+try{
+
+await fetch("/api/lead",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(data)
+});
+
+document.getElementById("formMessage").innerText="Registration received.";
+this.reset();
+
+}catch(err){
+
+document.getElementById("formMessage").innerText="Submission failed.";
+
+}
+
+});
+</script>
+
+<script defer data-project-id="1001" data-landing-id="crypto" src="js/session.min.js"></script>
+<script defer src="js/activity.min.js"></script>
+
+</body>
+</html>
